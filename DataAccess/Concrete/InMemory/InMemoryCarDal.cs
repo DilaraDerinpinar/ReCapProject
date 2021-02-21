@@ -22,6 +22,17 @@ namespace DataAccess.Concrete.InMemory
                 new Car{BrandId = 4,ColorId = 1,DailyPrice = 120,Description = "Toyota Yaris",Id=5,ModelYear = 2017}
             };
         }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public  void Add(Car car)
         {
             _cars.Add(car);
@@ -48,10 +59,7 @@ namespace DataAccess.Concrete.InMemory
         }
 
 
-        public  List<Car> GetAll()
-        {
-            return _cars;
-        }
+       
 
         
 
