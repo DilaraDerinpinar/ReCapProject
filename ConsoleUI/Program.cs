@@ -31,9 +31,17 @@ namespace ConsoleUI
 
             //**************************************************
 
-            EntityFrameworkAddTest();
-            EntityFrameworkDeleteTest();
-            EntityFrameworkUpdateTest();
+            //EntityFrameworkAddTest();
+            //EntityFrameworkDeleteTest();
+            //EntityFrameworkUpdateTest();
+
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach(var item in carManager.GetProductDetails())
+            {
+                Console.WriteLine($"{item.BrandName} -- {item.CarName} --- {item.ColorName} ---- {item.DailyPrice}");
+
+            }
+
 
             Console.ReadLine();
 

@@ -31,15 +31,15 @@ namespace Business.Concrete
 
         //public void Delete(Brand brand)
         //{
-            
-        //    Console.WriteLine("{0} was deleted!",brand.BrandName);
+
+        //    Console.WriteLine("{0} was deleted!", brand.BrandName);
         //    _brandDal.Delete(brand);
         //}
 
         //public void Update(Brand brand)
         //{
         //    _brandDal.Update(brand);
-        //    Console.WriteLine("{0} was updated!",brand.BrandName);
+        //    Console.WriteLine("{0} was updated!", brand.BrandName);
         //}
 
         //public List<Brand> GetAll()
@@ -47,9 +47,14 @@ namespace Business.Concrete
         //    throw new NotImplementedException();
         //}
 
-        public List<Brand> GetCarsByBrandId(int brandId)
+        //public List<Brand> GetCarsByBrandId(int brandId)
+        //{
+        //    return _brandDal.GetAll();
+        //}
+
+        Brand IBrandService.GetCarsByBrandId(int brandId)
         {
-            return _brandDal.GetAll();
+            return _brandDal.Get(b => b.BrandID == brandId);
         }
     }
 }

@@ -9,12 +9,12 @@ namespace Business.Concrete
 {
     public class ColorManager:IColorService
     {
-        //IColorDal _colorDal;
+        IColorDal _colorDal;
 
-        //public ColorManager(IColorDal colorDal)
-        //{
-        //    _colorDal = colorDal;
-        //}
+        public ColorManager(IColorDal colorDal)
+        {
+            _colorDal = colorDal;
+        }
 
         //public void Add(Color color)
         //{
@@ -36,11 +36,11 @@ namespace Business.Concrete
         //    return _colorDal.GetAll();
         //}
 
-        //public Color GetCarsByColorId(int id)
-        //{
-        //    return _colorDal.Get(c => c.ColorID == id);
-        //}
+        public Color GetCarsByColorId(int id)
+        {
+            return _colorDal.Get(c => c.ColorID == id);
+        }
 
-        
+
     }
 }
