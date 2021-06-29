@@ -2,7 +2,7 @@
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
+//using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
 namespace ConsoleUI
@@ -36,10 +36,17 @@ namespace ConsoleUI
             //EntityFrameworkUpdateTest();
 
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach(var item in carManager.GetProductDetails())
+            var result = carManager.GetProductDetails();
+            if(result.Success==true)
             {
-                Console.WriteLine($"{item.BrandName} -- {item.CarName} --- {item.ColorName} ---- {item.DailyPrice}");
-
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName + "/" + car.DailyPrice);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
 
 
@@ -48,6 +55,7 @@ namespace ConsoleUI
 
         }
 
+        /*
         private static void EntityFrameworkAddTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
@@ -96,5 +104,6 @@ namespace ConsoleUI
 
 
         }
+        */
     }
 }
