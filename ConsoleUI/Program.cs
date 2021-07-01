@@ -35,6 +35,8 @@ namespace ConsoleUI
             //EntityFrameworkDeleteTest();
             //EntityFrameworkUpdateTest();
 
+
+            /*
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetProductDetails();
             if(result.Success==true)
@@ -48,6 +50,30 @@ namespace ConsoleUI
             {
                 Console.WriteLine(result.Message);
             }
+            */
+
+
+            CarManager carManager = new CarManager(new EfCarDal());
+            Car car = new Car();
+            car.BrandId = 2;
+            car.CarName = "mercedes";
+            car.ColorId = 2;
+            car.DailyPrice = 500;
+            car.Description = "i20";
+
+            carManager.Add(car);
+
+            Console.WriteLine(car.CarName);
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental();
+            rental.CarId = 1;
+            rental.CustomerId = 1;
+            rental.RentDate = new DateTime(2020, 4, 12);
+            rental.ReturnDate = new DateTime(2021, 1, 3);
+
+            rentalManager.Add(rental);
+
 
 
             Console.ReadLine();
