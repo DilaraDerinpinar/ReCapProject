@@ -21,31 +21,24 @@ namespace Business.Concrete
         }
 
 
-        public void Delete(Car car)
-        {
-            _carDal.Delete(car);
-            Console.WriteLine("The car was deleted!");
-        }
-
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             if (car.DailyPrice > 0)
             {
                 _carDal.Update(car);
-                Console.WriteLine("The cars info was updated!");
+                return new SuccessResult(Message.CarUpdated);
             }
             else
             {
-                Console.WriteLine("Please enter correct car daily price!");
+                return new ErrorResult(Message.CarIsNot);
             }
         }
 
-      
-
-       
-
-       
-        
+        public IResult Delete(Car car)
+        {
+            _carDal.Delete(car);
+            return new SuccessResult(Message.CarDeleted);
+        }
 
         public IDataResult<List<Car>> GetByUnitPrice(decimal min, decimal max)
         {
@@ -91,5 +84,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id));
         }
+
+       
     }
 }

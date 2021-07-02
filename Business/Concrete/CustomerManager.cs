@@ -23,10 +23,10 @@ namespace Business.Concrete
             return new SuccessResult(Message.CustomerAdded);
         }
 
-        public void Delete(Customer customer)
+        public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
-            Console.WriteLine("The customer was deleted!!");
+            return new SuccessResult(Message.CustomerDeleted);
         }
 
         public IDataResult<List<Customer>> GetAll()
@@ -34,10 +34,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Message.AllCustomer);
         }
 
-        public void Update(Customer customer)
+        public IDataResult<Customer> GetById(int customerId)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(p => p.Id == customerId));
+        }
+
+        public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
-            Console.WriteLine("The customers info was updated!!");
+            return new SuccessResult(Message.CustomerUpdated);
         }
     }
 }

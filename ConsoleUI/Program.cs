@@ -36,49 +36,44 @@ namespace ConsoleUI
             //EntityFrameworkUpdateTest();
 
 
-            /*
-            CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.GetProductDetails();
-            if(result.Success==true)
-            {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine(car.CarName + "/" + car.DailyPrice);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-            */
+
+            //CarManager carManager = new CarManager(new EfCarDal());
+            //var result = carManager.GetProductDetails();
+            //if(result.Success==true)
+            //{
+            //    foreach (var car in result.Data)
+            //    {
+            //        Console.WriteLine(car.CarName + "/" + car.DailyPrice);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
 
 
-            CarManager carManager = new CarManager(new EfCarDal());
-            Car car = new Car();
-            car.BrandId = 2;
-            car.CarName = "mercedes";
-            car.ColorId = 2;
-            car.DailyPrice = 500;
-            car.Description = "i20";
-
-            carManager.Add(car);
-
-            Console.WriteLine(car.CarName);
-
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            Rental rental = new Rental();
-            rental.CarId = 1;
-            rental.CustomerId = 1;
-            rental.RentDate = new DateTime(2020, 4, 12);
-            rental.ReturnDate = new DateTime(2021, 1, 3);
-
-            rentalManager.Add(rental);
-
-
+            UserAddTestWithMessage();
+            RentalAddTestWithMessage();
 
             Console.ReadLine();
 
 
+        }
+
+        private static void RentalAddTestWithMessage()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result2 = rentalManager.Add(new Rental
+            { CarId = 1, CustomerId = 1, RentDate = new DateTime(2011, 7, 11) });
+            Console.WriteLine(result2.Message);
+        }
+
+        private static void UserAddTestWithMessage()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.Add(new User
+            { FirstName = "Dilara", LastName = "Derinpinar", Email = "dsdf@gmail.com", Password = "11111" });
+            Console.WriteLine(result.Message);
         }
 
         /*

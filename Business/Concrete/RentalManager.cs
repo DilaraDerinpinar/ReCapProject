@@ -32,10 +32,10 @@ namespace Business.Concrete
 
         }
 
-        public void Delete(Rental rental)
+        public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            Console.WriteLine("The rental info was deleted!");
+            return new SuccessResult(Message.RentalDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
@@ -43,10 +43,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Message.AllRental);
         }
 
-        public void Update(Rental rental)
+        public IDataResult<Rental> GetById(int rentalId)
         {
-            _rentalDal.Update(rental);
-            Console.WriteLine("The rental info was updated!");
+            
+             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
+            
+        }
+
+        public IResult Update(Rental rental)
+        {
+            _rentalDal.Delete(rental);
+            return new SuccessResult(Message.RentalUpdated);
         }
     }
 }
