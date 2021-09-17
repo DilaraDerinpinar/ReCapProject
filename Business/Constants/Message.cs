@@ -20,6 +20,7 @@ namespace Business.Constants
         public static string BrandUpdated = "Marka bilgileri güncellendi.";
         public static string AllListBrand = "Tüm araba markaları listelendi!";
         public static string GetBrand = "Araba markası listelendi.";
+        public static string BrandNameInvalid = "İsim geçersiz.";
 
         // Color 
         public static string ColorAdded = "İstediğiniz renk eklendi.";

@@ -19,6 +19,10 @@ namespace Business.Concrete
 
         public IResult Add(Brand brand)
         {
+            if (brand.BrandName.Length < 2)
+            {
+                return new ErrorResult(Message.BrandNameInvalid);
+            }
             _brandDal.Add(brand);
             return new SuccessResult(Message.BrandAdded);
         }
