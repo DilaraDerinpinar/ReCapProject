@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, RentalCarContext>, ICarDal
     {
-        public List<CarDetailDto> GetProductDetails()
+        public List<CarDetailDto> GetCarDetails()
         {
             using (RentalCarContext rentalCarContext = new RentalCarContext())
             {
@@ -25,10 +25,14 @@ namespace DataAccess.Concrete.EntityFramework
 
                              select new CarDetailDto
                              {
+                                 Id = c.Id,
                                  CarName = c.CarName,
                                  BrandName = b.BrandName,
                                  ColorName = cr.ColorName,
-                                 DailyPrice=(int)c.DailyPrice
+                                 ModelYear = (int)c.ModelYear,
+                                 DailyPrice = (int)c.DailyPrice,
+                                 Description = c.Description
+
 
 
                              };
